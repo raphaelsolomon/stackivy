@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:stackivy/constant/colors.constant.dart';
-import 'package:stackivy/constant/others.constant.dart';
 import 'package:stackivy/resuable/bottom.resuable.dart';
 import 'package:stackivy/resuable/drawer.resuable.dart';
 import 'package:stackivy/resuable/widgets.resuable.dart';
@@ -17,175 +16,182 @@ class _DashboardPageState extends State<DashboardPage> {
   int currentIndex = 0;
   int currentScrollIndex = 0;
   int currentPageView2Index = 0;
+  final GlobalKey<SliderDrawerState> _sliderDrawerKey = GlobalKey<SliderDrawerState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SliderDrawer(
-        slider: const CustomDrawer(),
+        key: _sliderDrawerKey,
+        sliderBoxShadow: SliderBoxShadow(color: Colors.black45),
+        slider: CustomDrawer(_sliderDrawerKey),
         appBar: null,
-        child: SafeArea(
-            child: Stack(
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                  child: Row(
+        child: GestureDetector(
+          onTap: () => _sliderDrawerKey.currentState!.closeSlider(),
+          child: SafeArea(
+              maintainBottomViewPadding: false,
+              child: Stack(
+                children: [
+                  Column(
                     children: [
-                      Flexible(
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: Row(
                           children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage('assets/user.png'),
-                              radius: 30.0,
+                            Flexible(
+                              child: Row(
+                                children: [
+                                  const CircleAvatar(
+                                    backgroundImage: AssetImage('assets/user.png'),
+                                    radius: 30.0,
+                                  ),
+                                  const SizedBox(width: 20.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: const [
+                                          Text(
+                                            'Good Morning',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
+                                          ),
+                                          SizedBox(width: 10.0),
+                                          Icon(
+                                            Icons.sunny,
+                                            color: Color(0xFFFBBF24),
+                                            size: 15.0,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 8.0),
+                                      const Text(
+                                        'Cadet <Annie/>',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 18.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                            const SizedBox(width: 20.0),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: const [
-                                    Text(
-                                      'Good Morning',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(width: 10.0),
-                                    Icon(
-                                      Icons.sunny,
-                                      color: Color(0xFFFBBF24),
-                                      size: 15.0,
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: 8.0),
-                                const Text(
-                                  'Cadet <Annie/>',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 18.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
-                                ),
-                              ],
+                            Image.asset(
+                              'assets/notification.png',
                             )
                           ],
                         ),
                       ),
-                      Image.asset(
-                        'assets/notification.png',
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.015,
-                ),
-                Expanded(
-                    flex: 1,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 30.0, right: 27.0),
-                            child: SizedBox(
-                              height: 246,
-                              child: PageView.builder(
-                                itemCount: [accountBalance(context), accountBalance2(context, 'USD'), totalFunds(context, 'NGN')].length,
-                                onPageChanged: (value) => setState(() => currentIndex = value),
-                                itemBuilder: (ctx, i) => [accountBalance(context), accountBalance2(context, 'USD'), totalFunds(context, 'NGN')][i],
-                              ),
-                            ),
-                          ),
-                          _indicator(currentIndex),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.035,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 30.0, right: 27.0),
-                            child: Text(
-                              'Quick Links',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 14.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.035,
-                          ),
-                          quickLink(),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.035,
-                          ),
-                          chartIndicator(),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.015,
+                      ),
+                      Expanded(
+                          flex: 1,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                InkWell(
-                                    onTap: () {
-                                      if (currentScrollIndex > 0) {
-                                        setState(() {
-                                          currentScrollIndex--;
-                                        });
-                                      }
-                                    },
-                                    child: circularNextButton(Icons.arrow_back_ios, visible: false)),
-                                const SizedBox(width: 10.0),
-                                InkWell(
-                                    onTap: () {
-                                      if (currentScrollIndex < 2) {
-                                        currentScrollIndex++;
-                                      }
-                                      setState(() {});
-                                    },
-                                    child: circularNextButton(Icons.arrow_forward_ios))
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 30.0, right: 27.0),
+                                  child: SizedBox(
+                                    height: 246,
+                                    child: PageView.builder(
+                                      itemCount: [accountBalance(context), accountBalance2(context, 'USD'), totalFunds(context, 'NGN')].length,
+                                      onPageChanged: (value) => setState(() => currentIndex = value),
+                                      itemBuilder: (ctx, i) => [accountBalance(context), accountBalance2(context, 'USD'), totalFunds(context, 'NGN')][i],
+                                    ),
+                                  ),
+                                ),
+                                _indicator(currentIndex),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.035,
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 30.0, right: 27.0),
+                                  child: Text(
+                                    'Quick Links',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 14.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.035,
+                                ),
+                                quickLink(),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.035,
+                                ),
+                                chartIndicator(),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.05,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      InkWell(
+                                          onTap: () {
+                                            if (currentScrollIndex > 0) {
+                                              setState(() {
+                                                currentScrollIndex--;
+                                              });
+                                            }
+                                          },
+                                          child: circularNextButton(Icons.arrow_back_ios, visible: false)),
+                                      const SizedBox(width: 10.0),
+                                      InkWell(
+                                          onTap: () {
+                                            if (currentScrollIndex < 2) {
+                                              currentScrollIndex++;
+                                            }
+                                            setState(() {});
+                                          },
+                                          child: circularNextButton(Icons.arrow_forward_ios))
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.02,
+                                ),
+                                secondItem(currentScrollIndex),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.035,
+                                ),
+                                SizedBox(
+                                  height: 216.0,
+                                  child: PageView.builder(
+                                    onPageChanged: (value) => setState(() => currentPageView2Index = value),
+                                    itemCount: [thirdItem(context), thirdItem1(context), thirdItem2(context), thirdItem3(context)].length,
+                                    itemBuilder: (ctx, i) => [thirdItem(context), thirdItem1(context), thirdItem2(context), thirdItem3(context)][i],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.023,
+                                ),
+                                indicatorWidget(4, currentPageView2Index),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.1,
+                                ),
+                                videoDisplay(context),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.06,
+                                ),
+                                lastItem(context),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.15,
+                                ),
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          secondItem(currentScrollIndex),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.035,
-                          ),
-                          SizedBox(
-                            height: 216.0,
-                            child: PageView.builder(
-                              onPageChanged: (value) => setState(() => currentPageView2Index = value),
-                              itemCount: [thirdItem(context), thirdItem1(context), thirdItem2(context), thirdItem3(context)].length,
-                              itemBuilder: (ctx, i) => [thirdItem(context), thirdItem1(context), thirdItem2(context), thirdItem3(context)][i],
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.023,
-                          ),
-                          indicatorWidget(4, currentPageView2Index),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.1,
-                          ),
-                          videoDisplay(context),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.06,
-                          ),
-                          lastItem(context),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.15,
-                          ),
-                        ],
-                      ),
-                    ))
-              ],
-            ),
-            const Align(alignment: Alignment.bottomCenter, child: CustomBottomNav())
-          ],
-        )),
+                          ))
+                    ],
+                  ),
+                  const Align(alignment: Alignment.bottomCenter, child: CustomBottomNav())
+                ],
+              )),
+        ),
       ),
     );
   }

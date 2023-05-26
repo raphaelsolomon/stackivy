@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Cabinet Grotesk',
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slider_drawer/src/slider.dart';
 import 'package:stackivy/constant/colors.constant.dart';
 import 'package:stackivy/resuable/dailog.resuable.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final GlobalKey<SliderDrawerState> sliderDrawerKey;
+  const CustomDrawer(this.sliderDrawerKey, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,21 +34,21 @@ class CustomDrawer extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.07,
             ),
-            _listItem('user.png', 'Profile'),
+            GestureDetector(onTap: () => sliderDrawerKey.currentState!.closeSlider(), child: _listItem('user.png', 'Profile')),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            _listItem('port.png', 'PortFolio'),
+            GestureDetector(onTap: () => sliderDrawerKey.currentState!.closeSlider(), child: _listItem('port.png', 'PortFolio')),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            _listItem('payment.png', 'Payment'),
+            GestureDetector(onTap: () => sliderDrawerKey.currentState!.closeSlider(), child: _listItem('payment.png', 'Payment')),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
             Row(
               children: [
-                _listItem('invest.png', 'Investment'),
+                GestureDetector(onTap: () => sliderDrawerKey.currentState!.closeSlider(), child: _listItem('invest.png', 'Investment')),
                 const SizedBox(width: 15.0),
                 Flexible(
                   child: Container(
@@ -67,7 +69,7 @@ class CustomDrawer extends StatelessWidget {
             ),
             Row(
               children: [
-                _listItem('insurance.png', 'Insurance'),
+                GestureDetector(onTap: () => sliderDrawerKey.currentState!.closeSlider(), child: _listItem('insurance.png', 'Insurance')),
                 const SizedBox(width: 15.0),
                 Flexible(
                   child: Container(
@@ -86,9 +88,14 @@ class CustomDrawer extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            _listItem('budget.png', 'Budgeting'),
+            GestureDetector(onTap: () => sliderDrawerKey.currentState!.closeSlider(), child: _listItem('budget.png', 'Budgeting')),
             const Spacer(),
-            InkWell(onTap: () => showDialog(context: context, barrierDismissible: true, builder: (BuildContext context) => const LogoutDialog()), child: _listItem('logout.png', 'Log Out')),
+            InkWell(
+                onTap: () {
+                  sliderDrawerKey.currentState!.closeSlider();
+                  showDialog(context: context, barrierDismissible: true, builder: (BuildContext context) => const LogoutDialog());
+                },
+                child: _listItem('logout.png', 'Log Out')),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
