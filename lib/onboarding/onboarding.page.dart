@@ -35,7 +35,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           const SizedBox(
             height: 50.0,
           ),
-          InkWell(
+          GestureDetector(
             onTap: () => Get.to(() => const RegistrationPage()),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35.0),

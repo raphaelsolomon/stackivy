@@ -114,11 +114,11 @@ class _DashboardPageState extends State<DashboardPage> {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.035,
                           ),
-                          _quickLink(),
+                          quickLink(),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.035,
                           ),
-                          _chartIndicator(),
+                          chartIndicator(),
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05,
                           ),
@@ -135,11 +135,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                         });
                                       }
                                     },
-                                    child: const Icon(
-                                      Icons.arrow_back_ios,
-                                      color: DEFAULTCOLOR,
-                                      size: 20.0,
-                                    )),
+                                    child: circularNextButton(Icons.arrow_back_ios, visible: false)),
                                 const SizedBox(width: 10.0),
                                 InkWell(
                                     onTap: () {
@@ -148,15 +144,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       }
                                       setState(() {});
                                     },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8.0),
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.0), color: Colors.white, boxShadow: [BoxShadow(color: Colors.grey.shade200, offset: const Offset(0.0, 1.0), spreadRadius: 2.0, blurRadius: 5.0)]),
-                                      child: const Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: DEFAULTCOLOR,
-                                        size: 20.0,
-                                      ),
-                                    ))
+                                    child: circularNextButton(Icons.arrow_forward_ios))
                               ],
                             ),
                           ),
@@ -215,212 +203,5 @@ class _DashboardPageState extends State<DashboardPage> {
                         decoration: BoxDecoration(color: index == i ? const Color(0xFF8807F7) : const Color(0xFFD9D9D9), borderRadius: BorderRadius.circular(10.0)),
                       ),
                     ))),
-      );
-
-  Widget _quickLink() => Padding(
-        padding: const EdgeInsets.only(left: 50.0, right: 50.0),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(
-                images.length,
-                (index) => SizedBox(
-                      width: 60.0,
-                      height: 63.0,
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              width: 55.0,
-                              height: 63.0,
-                              decoration: BoxDecoration(color: images[index]['color2'], borderRadius: BorderRadius.circular(10.0)),
-                            ),
-                          ),
-                          Container(
-                            width: 60.0,
-                            height: 59.0,
-                            decoration: BoxDecoration(color: images[index]['color'], borderRadius: BorderRadius.circular(10.0)),
-                            child: Center(
-                              child: Image.asset('assets/${images[index]['image']}'),
-                            ),
-                          )
-                        ],
-                      ),
-                    ))),
-      );
-
-  Widget _chartIndicator() => Container(
-        height: 96.0,
-        decoration: BoxDecoration(color: const Color(0xFFF9F9F9), borderRadius: BorderRadius.circular(8.0)),
-        margin: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 0.0),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0, top: 15.0, bottom: 15.0),
-              child: SizedBox(
-                width: 80.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      '80%',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 24.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                    ),
-                    const Text(
-                      'Complete KYC >',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 10.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                    ),
-                    const SizedBox(height: 7.0),
-                    Container(
-                      width: 80.0,
-                      height: 3.0,
-                      decoration: BoxDecoration(color: const Color(0xFFE5E7EB), borderRadius: BorderRadius.circular(8.0)),
-                      child: Container(width: 40, height: 3.0, decoration: BoxDecoration(color: DEFAULTCOLOR, borderRadius: BorderRadius.circular(8.0))),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: 2.0,
-              height: 50.0,
-              margin: const EdgeInsets.symmetric(horizontal: 10.0),
-              color: const Color(0xFfE5E7EB),
-            ),
-            Flexible(
-              flex: 3,
-              child: Stack(
-                children: [
-                  Align(alignment: Alignment.center, child: Image.asset('assets/chart.png')),
-                  Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: const [
-                                Icon(
-                                  Icons.check_circle,
-                                  color: Color(0xFFE8356D),
-                                  size: 15.0,
-                                ),
-                                SizedBox(width: 5.0),
-                                Text(
-                                  'Inflow',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 10.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 10.0),
-                            Row(
-                              children: const [
-                                Icon(
-                                  Icons.circle,
-                                  color: DEFAULTCOLOR,
-                                  size: 15.0,
-                                ),
-                                SizedBox(width: 5.0),
-                                Text(
-                                  'Outflow',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 10.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 10.0),
-                          ],
-                        ),
-                      )),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
-                          Icon(
-                            Icons.arrow_drop_up,
-                            color: Color(0xFF22C55E),
-                            size: 15.0,
-                          ),
-                          Text(
-                            ' 10.00%',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 10.0, color: Color(0xFF22C55E), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(width: 5.0),
-                          Text(
-                            'Cashflow',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 10.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(width: 10.0),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      );
-
-  Widget secondItem(int index) => Container(
-        height: 239.0,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 30.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            gradient: LinearGradient(colors: [image2[currentScrollIndex]['color'].withOpacity(.17), image2[currentScrollIndex]['color2'].withOpacity(.0)], begin: Alignment.topCenter, end: Alignment.bottomCenter, stops: const [0.0, 0.4])),
-        child: Column(
-          children: [
-            const SizedBox(height: 30.0),
-            Image.asset('assets/${image2[currentScrollIndex]['image']}'),
-            const SizedBox(height: 10.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 77.0),
-              child: Text(
-                image2[currentScrollIndex]['text1'],
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 15.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-              ),
-            ),
-            const SizedBox(height: 15.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 77.0),
-              child: Text(
-                image2[currentScrollIndex]['text2'],
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 15.0, color: Color(0xFF9CA3AF), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-              ),
-            ),
-            const SizedBox(height: 15.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 77.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    image2[currentScrollIndex]['text3'],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 12.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(width: 10.0),
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: DEFAULTCOLOR,
-                    size: 10.0,
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
       );
 }
