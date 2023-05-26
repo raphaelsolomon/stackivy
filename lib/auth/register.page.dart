@@ -171,7 +171,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   }
 
   _validate() {
-    if (!controller.text.trim().isEmail) {
+    if (!controller.text.trim().isEmail || controller.text.trim().isEmpty) {
       setState(() {
         isNotValid = true;
       });

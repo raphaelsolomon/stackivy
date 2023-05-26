@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF8807F7),
+                          color: _controller.text.trim().isEmpty || _pcontroller.text.trim().isEmpty ? const Color(0xFFE5E7EB) : const Color(0xFF8807F7),
                           borderRadius: BorderRadius.circular(90.0),
                         ),
                         child: const Text(
@@ -258,14 +258,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   validate() {
-    if (!_controller.text.trim().isEmail) {
+    if (!_controller.text.trim().isEmail || _controller.text.trim().isEmpty) {
       setState(() {
         isNotValid = true;
       });
       return;
     }
 
-    if (_pcontroller.text.length < 8) {
+    if (_pcontroller.text.length < 8 || _pcontroller.text.trim().isEmpty) {
       setState(() {
         isPasswordNotValid = true;
       });
