@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stackivy/auth/register.page.dart';
-import 'package:stackivy/hompage/dashboard.page.dart';
 
 import '../constant/colors.constant.dart';
 import '../constant/strings.constant.dart';
@@ -37,7 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             height: 50.0,
           ),
           InkWell(
-            onTap: () => Get.to(() => const DashboardPage()),
+            onTap: () => Get.to(() => const RegistrationPage()),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35.0),
               child: SizedBox(
