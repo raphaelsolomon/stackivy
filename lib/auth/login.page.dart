@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:stackivy/auth/register.page.dart';
 import 'package:stackivy/constant/colors.constant.dart';
 import 'package:stackivy/hompage/dashboard.page.dart';
+import 'package:stackivy/resuable/widgets.resuable.dart';
 
 import '../constant/strings.constant.dart';
 
@@ -16,6 +17,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _controller = TextEditingController();
   final _pcontroller = TextEditingController();
+  bool isNotValid = false;
+  bool isPasswordNotValid = false;
   bool obscure = true;
 
   @override
@@ -83,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.06,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     const Text(
                       'Welcome !',
@@ -99,13 +102,29 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.05,
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
-                    inputFormEmail(),
+                    inputWidget(
+                        controller: _controller,
+                        callBack: (s) => setState(() {
+                              if ('$s'.isEmail) isNotValid = false;
+                            }),
+                        isValid: isNotValid),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.03,
+                      height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                    inputFormPass(),
+                    inputPassword(
+                        controller: _pcontroller,
+                        obscure: obscure,
+                        changeVisibility: () => setState(() => obscure = !obscure),
+                        isValid: isPasswordNotValid,
+                        onChange: (s) => setState(() {
+                              if (s.length > 7) {
+                                isPasswordNotValid = false;
+                              } else {
+                                isPasswordNotValid = true;
+                              }
+                            })),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.01,
                     ),
@@ -125,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const Spacer(),
                     InkWell(
-                      onTap: () => Get.to(() => const DashboardPage()),
+                      onTap: () => validate(),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
@@ -238,83 +257,20 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget inputFormEmail() => Container(
-        height: 50.0,
-        decoration: BoxDecoration(border: Border.all(width: 1.0, color: const Color(0xFF9CA3AF)), color: Colors.white, borderRadius: BorderRadius.circular(6.0)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Icon(
-              Icons.mail_outline,
-              size: 20.0,
-              color: Color(0xFF9CA3AF),
-            ),
-            const SizedBox(width: 10.0),
-            Flexible(
-                fit: FlexFit.tight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 3.0),
-                  child: TextFormField(
-                    controller: _controller,
-                    onChanged: (s) => setState(() {}),
-                    cursorColor: DEFAULTCOLOR,
-                    style: const TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
-                    decoration: const InputDecoration(
-                      hintText: 'Email Address or kode Hex',
-                      hintStyle: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
-                      contentPadding: EdgeInsets.all(0.0),
-                      focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
-                      border: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
-                    ),
-                  ),
-                ))
-          ]),
-        ),
-      );
+  validate() {
+    if (!_controller.text.trim().isEmail) {
+      setState(() {
+        isNotValid = true;
+      });
+      return;
+    }
 
-  Widget inputFormPass() => Container(
-        height: 50.0,
-        decoration: BoxDecoration(border: Border.all(width: 1.0, color: const Color(0xFF9CA3AF)), color: Colors.white, borderRadius: BorderRadius.circular(6.0)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Icon(
-              Icons.lock_outline,
-              size: 20.0,
-              color: Color(0xFF9CA3AF),
-            ),
-            const SizedBox(width: 10.0),
-            Flexible(
-                fit: FlexFit.tight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 3.0),
-                  child: TextFormField(
-                    controller: _pcontroller,
-                    obscureText: obscure,
-                    onChanged: (s) => setState(() {}),
-                    cursorColor: DEFAULTCOLOR,
-                    style: const TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
-                      hintStyle: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
-                      contentPadding: EdgeInsets.all(0.0),
-                      focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
-                      border: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
-                    ),
-                  ),
-                )),
-            const SizedBox(width: 10.0),
-            InkWell(
-              onTap: () => setState(() {
-                obscure = !obscure;
-              }),
-              child: Icon(
-                obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                size: 20.0,
-                color: const Color(0xFF9CA3AF),
-              ),
-            ),
-          ]),
-        ),
-      );
+    if (_pcontroller.text.length < 8) {
+      setState(() {
+        isPasswordNotValid = true;
+      });
+      return;
+    }
+    Get.to(() => const DashboardPage());
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stackivy/auth/login.page.dart';
 import 'package:stackivy/constant/colors.constant.dart';
+import 'package:stackivy/resuable/widgets.resuable.dart';
 
 import '../constant/strings.constant.dart';
 
@@ -15,6 +16,7 @@ class RegistrationPage extends StatefulWidget {
 class _RegistrationPageState extends State<RegistrationPage> {
   final controller = TextEditingController();
   String inputValue = '';
+  bool isNotValid = false;
   @override
   void dispose() {
     controller.dispose();
@@ -108,51 +110,27 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.05,
                     ),
-                    Container(
-                      height: 50.0,
-                      decoration: BoxDecoration(border: Border.all(width: 1.0, color: const Color(0xFF9CA3AF)), color: Colors.white, borderRadius: BorderRadius.circular(6.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          const Icon(
-                            Icons.mail_outline,
-                            size: 20.0,
-                            color: Color(0xFF9CA3AF),
-                          ),
-                          const SizedBox(width: 10.0),
-                          Flexible(
-                              fit: FlexFit.tight,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 3.0),
-                                child: TextFormField(
-                                  controller: controller,
-                                  onChanged: (s) => setState(() {}),
-                                  cursorColor: DEFAULTCOLOR,
-                                  style: const TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
-                                  decoration: const InputDecoration(
-                                    hintText: 'Email Address',
-                                    hintStyle: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
-                                    contentPadding: EdgeInsets.all(0.0),
-                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
-                                    border: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
-                                  ),
-                                ),
-                              ))
-                        ]),
-                      ),
-                    ),
+                    inputWidget(
+                        controller: controller,
+                        callBack: (s) => setState(() {
+                              if ('$s'.isEmail) isNotValid = false;
+                            }),
+                        isValid: isNotValid),
                     const Spacer(),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
-                      decoration: BoxDecoration(
-                        color: controller.text.trim().isEmpty ? const Color(0xFFE5E7EB) : const Color(0xFF8807F7),
-                        borderRadius: BorderRadius.circular(90.0),
-                      ),
-                      child: const Text(
-                        'Continue',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 15.52, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
+                    InkWell(
+                      onTap: () => _validate(),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 14.0),
+                        decoration: BoxDecoration(
+                          color: controller.text.trim().isEmpty ? const Color(0xFFE5E7EB) : const Color(0xFF8807F7),
+                          borderRadius: BorderRadius.circular(90.0),
+                        ),
+                        child: const Text(
+                          'Continue',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 15.52, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -190,5 +168,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ],
       ),
     );
+  }
+
+  _validate() {
+    if (!controller.text.trim().isEmail) {
+      setState(() {
+        isNotValid = true;
+      });
+      return;
+    }
+    Get.to(() => const LoginPage());
   }
 }

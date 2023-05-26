@@ -43,11 +43,11 @@ Widget logoutPop(BuildContext context) {
                       child: InkWell(
                         onTap: () => Get.offAll(() => const LoginPage()),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 13.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 13.0),
                           decoration: BoxDecoration(color: const Color(0xFFFCE4EB), borderRadius: BorderRadius.circular(8.0)),
                           child: const FittedBox(
                             child: Text(
-                              'Coming Soon',
+                              'Confirm',
                               style: TextStyle(fontSize: 14.0, color: Color(0xFFE8356D), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
                             ),
                           ),

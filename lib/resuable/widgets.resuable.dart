@@ -523,90 +523,105 @@ Widget accountBalance(BuildContext context) => Center(
     );
 
 Widget accountBalance2(BuildContext context, String currecncy) => Center(
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-        padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(22.132), color: const Color(0xFFE8356D)),
-        height: 200,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Dilla Wallet',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16.0, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
+      child: Stack(
+        children: [
+          Transform(
+            transform: Matrix4.rotationZ(31.38),
+            alignment: FractionalOffset.topLeft,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 5.0),
+              padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(22.132), color: const Color(0xFFE8356D).withOpacity(.5)),
+              height: 190,
             ),
-            const SizedBox(height: 15.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(22.132), color: const Color(0xFFE8356D)),
+            height: 200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Flexible(
-                  child: Text(
-                    'NGN 100,000.00',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 22.130, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
-                  ),
+                const Text(
+                  'Dilla Wallet',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16.0, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
                 ),
-                Image.asset('assets/eyes.png')
-              ],
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+                const SizedBox(height: 15.0),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(color: const Color(0xFF3D0072).withOpacity(.11), borderRadius: BorderRadius.circular(50.0)),
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(color: currecncy == 'NGN' ? Colors.white : Colors.transparent, borderRadius: BorderRadius.circular(50.0)),
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
-                            child: Text(
-                              'NGN',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 8.130, color: currecncy == 'NGN' ? const Color(0xFF3D0072) : Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(width: 5.0),
-                          Container(
-                            decoration: BoxDecoration(color: currecncy == 'USD' ? Colors.white : Colors.transparent, borderRadius: BorderRadius.circular(50.0)),
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
-                            child: Text(
-                              'USD',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 8.130, color: currecncy == 'USD' ? const Color(0xFF3D0072) : Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                            ),
-                          )
-                        ],
+                    const Flexible(
+                      child: Text(
+                        'NGN 100,000.00',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 22.130, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
                       ),
                     ),
-                    const SizedBox(width: 10.0),
-                    const Text(
-                      '₦740 /\$1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 8.130, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
-                    ),
+                    Image.asset('assets/eyes.png')
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(100.0)),
-                  child: const FittedBox(
-                    child: Text(
-                      'Add Money',
-                      style: TextStyle(fontSize: 11.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(color: const Color(0xFF3D0072).withOpacity(.11), borderRadius: BorderRadius.circular(50.0)),
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(color: currecncy == 'NGN' ? Colors.white : Colors.transparent, borderRadius: BorderRadius.circular(50.0)),
+                                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
+                                child: Text(
+                                  'NGN',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 8.130, color: currecncy == 'NGN' ? const Color(0xFF3D0072) : Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              const SizedBox(width: 5.0),
+                              Container(
+                                decoration: BoxDecoration(color: currecncy == 'USD' ? Colors.white : Colors.transparent, borderRadius: BorderRadius.circular(50.0)),
+                                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5.0),
+                                child: Text(
+                                  'USD',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 8.130, color: currecncy == 'USD' ? const Color(0xFF3D0072) : Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 10.0),
+                        const Text(
+                          '₦740 /\$1',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 8.130, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(100.0)),
+                      child: const FittedBox(
+                        child: Text(
+                          'Add Money',
+                          style: TextStyle(fontSize: 11.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
 
@@ -681,4 +696,136 @@ Widget totalFunds(BuildContext context, String currecncy) => Center(
           ],
         ),
       ),
+    );
+
+Widget inputWidget({controller, callBack, isValid}) => Column(
+      children: [
+        Container(
+          height: 50.0,
+          decoration: BoxDecoration(border: Border.all(width: 1.0, color: const Color(0xFF9CA3AF)), color: Colors.white, borderRadius: BorderRadius.circular(6.0)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(
+                Icons.mail_outline,
+                size: 20.0,
+                color: Color(0xFF9CA3AF),
+              ),
+              const SizedBox(width: 10.0),
+              Flexible(
+                  fit: FlexFit.tight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 3.0),
+                    child: TextFormField(
+                      controller: controller,
+                      onChanged: (s) => callBack(s),
+                      cursorColor: DEFAULTCOLOR,
+                      style: const TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
+                      decoration: const InputDecoration(
+                        hintText: 'Email Address',
+                        hintStyle: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
+                        contentPadding: EdgeInsets.all(0.0),
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
+                        border: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
+                      ),
+                    ),
+                  ))
+            ]),
+          ),
+        ),
+        AnimatedOpacity(
+          opacity: isValid ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 400),
+          child: Column(
+            children: [
+              const SizedBox(height: 5.0),
+              Row(
+                children: const [
+                  Icon(
+                    Icons.error,
+                    color: Color(0xFFE8356D),
+                    size: 16.0,
+                  ),
+                  SizedBox(width: 5.0),
+                  Text(
+                    'This email is not valid',
+                    style: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
+                  )
+                ],
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+
+Widget inputPassword({controller, obscure = true, isValid, onChange, changeVisibility}) => Column(
+      children: [
+        Container(
+          height: 50.0,
+          decoration: BoxDecoration(border: Border.all(width: 1.0, color: const Color(0xFF9CA3AF)), color: Colors.white, borderRadius: BorderRadius.circular(6.0)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(
+                Icons.lock_outline,
+                size: 20.0,
+                color: Color(0xFF9CA3AF),
+              ),
+              const SizedBox(width: 10.0),
+              Flexible(
+                  fit: FlexFit.tight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 3.0),
+                    child: TextFormField(
+                      controller: controller,
+                      obscureText: obscure,
+                      onChanged: (s) => onChange(s),
+                      cursorColor: DEFAULTCOLOR,
+                      style: const TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
+                      decoration: const InputDecoration(
+                        hintText: 'Password',
+                        hintStyle: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
+                        contentPadding: EdgeInsets.all(0.0),
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
+                        border: OutlineInputBorder(borderSide: BorderSide.none, gapPadding: 0.0),
+                      ),
+                    ),
+                  )),
+              const SizedBox(width: 10.0),
+              InkWell(
+                onTap: () => changeVisibility(),
+                child: Icon(
+                  obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                  size: 20.0,
+                  color: const Color(0xFF9CA3AF),
+                ),
+              ),
+            ]),
+          ),
+        ),
+        AnimatedOpacity(
+          opacity: isValid ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 400),
+          child: Column(
+            children: [
+              const SizedBox(height: 5.0),
+              Row(
+                children: const [
+                  Icon(
+                    Icons.error,
+                    color: Color(0xFFE8356D),
+                    size: 16.0,
+                  ),
+                  SizedBox(width: 5.0),
+                  Text(
+                    'This password must be at least 8 characters',
+                    style: TextStyle(fontSize: 12.0, color: Color(0xFF6B7280), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
+                  )
+                ],
+              ),
+            ],
+          ),
+        )
+      ],
     );
