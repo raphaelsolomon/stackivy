@@ -551,7 +551,7 @@ Widget accountBalance2(BuildContext context, String currecncy) => Center(
             margin: const EdgeInsets.only(right: 10.0),
             padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(image: const DecorationImage(image: AssetImage('assets/card/inner.png')), borderRadius: BorderRadius.circular(22.132), color: const Color(0xFFE8356D)),
+            decoration: BoxDecoration(image: const DecorationImage(image: AssetImage('assets/card/inner.png'), fit: BoxFit.fill), borderRadius: BorderRadius.circular(22.132), color: const Color(0xFFE8356D)),
             height: 200,
             child: Stack(
               children: [
