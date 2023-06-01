@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stackivy/auth/login.page.dart';
+import 'package:stackivy/auth/verify.page.dart';
 import 'package:stackivy/constant/colors.constant.dart';
 import 'package:stackivy/resuable/widgets.resuable.dart';
 
@@ -178,6 +179,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       });
       return;
     }
-    Get.to(() => const LoginPage());
+    Get.to(() => const VerificationPage());
   }
 }

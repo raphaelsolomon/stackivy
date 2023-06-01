@@ -40,6 +40,7 @@ dependencies:
   get:
   flutter_slider_drawer:
   gradient_like_css:
+  open_mail_app: ^0.4.5
 
 flutter_native_splash:
   android: true
