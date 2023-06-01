@@ -24,13 +24,13 @@ Widget thirdItem(BuildContext context) => Column(
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: const Color(0xFFFEF6F8)),
             child: Row(
               children: [
-                Flexible(
+                const Flexible(
                     flex: 2,
                     child: Stack(
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             SizedBox(height: 10.0),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 0.0),
@@ -157,32 +157,32 @@ Widget thirdItem2(BuildContext context) => Column(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
+                const Flexible(
                     fit: FlexFit.tight,
                     child: Stack(
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 20.0),
-                            const Padding(
+                            SizedBox(height: 20.0),
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: 0.0),
                               child: Text(
                                 'Refer & Earn',
                                 style: TextStyle(fontSize: 20.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
                               ),
                             ),
-                            const SizedBox(height: 15.0),
-                            const Padding(
+                            SizedBox(height: 15.0),
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: 0.0),
                               child: Text(
                                 'Invite using your Kode Hex.',
                                 style: TextStyle(fontSize: 10.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
                               ),
                             ),
-                            const Spacer(),
+                            Spacer(),
                             Row(
-                              children: const [
+                              children: [
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 0.0),
                                   child: Text(
@@ -198,7 +198,7 @@ Widget thirdItem2(BuildContext context) => Column(
                                 )
                               ],
                             ),
-                            const Spacer(),
+                            Spacer(),
                           ],
                         ),
                       ],
@@ -234,32 +234,32 @@ Widget thirdItem3(BuildContext context) => Column(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
+                const Flexible(
                     fit: FlexFit.tight,
                     child: Stack(
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 20.0),
-                            const Padding(
+                            SizedBox(height: 20.0),
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: 0.0),
                               child: Text(
                                 'Financial Nuggets',
                                 style: TextStyle(fontSize: 20.0, color: Color(0xFF3D0072), fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
                               ),
                             ),
-                            const SizedBox(height: 15.0),
-                            const Padding(
+                            SizedBox(height: 15.0),
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: 0.0),
                               child: Text(
                                 'Take a step towards financial literacy with financial advice from the best minds in the game',
                                 style: TextStyle(fontSize: 10.0, color: DEFAULTCOLOR, height: 2.0, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w400),
                               ),
                             ),
-                            const Spacer(),
+                            Spacer(),
                             Row(
-                              children: const [
+                              children: [
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 0.0),
                                   child: Text(
@@ -275,7 +275,7 @@ Widget thirdItem3(BuildContext context) => Column(
                                 )
                               ],
                             ),
-                            const Spacer(),
+                            Spacer(),
                           ],
                         ),
                       ],
@@ -333,14 +333,14 @@ Widget videoDisplay(BuildContext context) => Padding(
                       ),
                     ),
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+                      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
+                        children: [
                           Text(
                             'CEO, Mrs Oyinye',
                             textAlign: TextAlign.center,
@@ -510,8 +510,8 @@ Widget accountBalance(BuildContext context) => Center(
                   style: TextStyle(fontSize: 20.130, color: Colors.white, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 10.0),
-                Row(
-                  children: const [
+                const Row(
+                  children: [
                     Flexible(
                       child: Text(
                         'Generate Account Number',
@@ -757,11 +757,11 @@ Widget inputWidget({controller, callBack, isValid}) => Column(
         AnimatedOpacity(
           opacity: isValid ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 400),
-          child: Column(
+          child: const Column(
             children: [
-              const SizedBox(height: 5.0),
+              SizedBox(height: 5.0),
               Row(
-                children: const [
+                children: [
                   Icon(
                     Icons.error,
                     color: Color(0xFFE8356D),
@@ -828,11 +828,11 @@ Widget inputPassword({controller, obscure = true, isValid, onChange, changeVisib
         AnimatedOpacity(
           opacity: isValid ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 400),
-          child: Column(
+          child: const Column(
             children: [
-              const SizedBox(height: 5.0),
+              SizedBox(height: 5.0),
               Row(
-                children: const [
+                children: [
                   Icon(
                     Icons.error,
                     color: Color(0xFFE8356D),
@@ -938,15 +938,15 @@ Widget chartIndicator() => Container(
             child: Stack(
               children: [
                 Align(alignment: Alignment.center, child: Image.asset('assets/chart.png')),
-                Align(
+                const Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.check_circle,
                                 color: Color(0xFFE8356D),
@@ -960,9 +960,9 @@ Widget chartIndicator() => Container(
                               ),
                             ],
                           ),
-                          const SizedBox(width: 10.0),
+                          SizedBox(width: 10.0),
                           Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.circle,
                                 color: DEFAULTCOLOR,
@@ -976,17 +976,17 @@ Widget chartIndicator() => Container(
                               ),
                             ],
                           ),
-                          const SizedBox(width: 10.0),
+                          SizedBox(width: 10.0),
                         ],
                       ),
                     )),
-                Align(
+                const Align(
                   alignment: Alignment.topRight,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.arrow_drop_up,
                           color: Color(0xFF22C55E),
@@ -1016,7 +1016,7 @@ Widget chartIndicator() => Container(
     );
 
 Widget secondItem(int currentScrollIndex) => Container(
-      height: 239.0,
+      height: 242.0,
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 30.0),
       decoration: BoxDecoration(

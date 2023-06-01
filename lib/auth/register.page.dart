@@ -26,6 +26,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Container(
@@ -84,7 +85,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             alignment: Alignment.bottomCenter,
             child: Container(
               decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0))),
-              height: MediaQuery.of(context).size.height * 0.735,
+              height: MediaQuery.of(context).size.height * 0.77,
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 36.0),

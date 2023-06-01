@@ -41,19 +41,19 @@ class _DashboardPageState extends State<DashboardPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: Row(
                           children: [
-                            Flexible(
+                            const Flexible(
                               child: Row(
                                 children: [
-                                  const CircleAvatar(
+                                  CircleAvatar(
                                     backgroundImage: AssetImage('assets/user.png'),
                                     radius: 30.0,
                                   ),
-                                  const SizedBox(width: 20.0),
+                                  SizedBox(width: 20.0),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
-                                        children: const [
+                                        children: [
                                           Text(
                                             'Good Morning',
                                             textAlign: TextAlign.center,
@@ -67,8 +67,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                           )
                                         ],
                                       ),
-                                      const SizedBox(height: 8.0),
-                                      const Text(
+                                      SizedBox(height: 8.0),
+                                      Text(
                                         'Cadet <Annie/>',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 18.0, color: DEFAULTCOLOR, fontFamily: 'Cabinet Grotesk', fontWeight: FontWeight.w700),
@@ -161,7 +161,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   height: MediaQuery.of(context).size.height * 0.035,
                                 ),
                                 SizedBox(
-                                  height: 216.0,
+                                  height: 220.0,
                                   child: PageView.builder(
                                     onPageChanged: (value) => setState(() => currentPageView2Index = value),
                                     itemCount: [thirdItem(context), thirdItem1(context), thirdItem2(context), thirdItem3(context)].length,
@@ -173,7 +173,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ),
                                 indicatorWidget(4, currentPageView2Index),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.1,
+                                  height: MediaQuery.of(context).size.height * 0.08,
                                 ),
                                 videoDisplay(context),
                                 SizedBox(
