@@ -294,7 +294,7 @@ Widget indicatorWidget(length, index) => Row(
         length,
         (i) => AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width: index == i ? 30.17 : 7.0,
+              width: index == i ? 30.17 : 10.0,
               height: 10.0,
               margin: const EdgeInsets.only(left: 1.0, right: 1.0),
               decoration: BoxDecoration(color: index == i ? DEFAULTCOLOR : INDICATOR, borderRadius: BorderRadius.circular(100.0)),
