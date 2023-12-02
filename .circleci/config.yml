@@ -1,32 +1,36 @@
 version: 2.1
 
-orbs:
-  flutter: circleci/flutter@2.0.2
-
 jobs:
   build:
     docker:
-      - image: circleci/android:api-30-node
+      - image: circleci/android:api-30-node # Docker image for Android builds
 
     steps:
       - checkout
 
-      - flutter/install: # Install Flutter using the orb
-          version: 2.8.0 # Replace with the desired Flutter version
-
       - run:
-          name: Flutter Version Check
-          command: flutter --version
+          name: Install Flutter
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
+
+            # Download Flutter SDK
+            git clone https://github.com/flutter/flutter.git -b stable --depth 1
+
+            # Add Flutter binaries to PATH
+            export PATH="$PATH:`pwd`/flutter/bin"
+
+            # Run flutter doctor to finish installation and check Flutter version
+            flutter doctor
 
       - run:
           name: Flutter Pub Get
           command: flutter pub get
 
+      # Add more steps for testing, building, or other tasks as needed
 
 workflows:
   version: 2
   build:
     jobs:
       - build
-      
-
