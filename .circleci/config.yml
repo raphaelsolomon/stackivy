@@ -1,25 +1,26 @@
 version: 2.1
-
 jobs:
-  build:
+  build:    
     docker:
-      - image: docker.io/cirrusci/flutter:latest
+      - image: cirrusci/flutter:v3.16.0 
+
+    branches:
+      only: master
 
     steps:
       - checkout
 
       - run:
-          name: Flutter upgrade
-          command: flutter upgrade
+          name: Run Flutter doctor
+          command: flutter doctor
 
       - run:
-          name: Flutter Doctor
-          command: flutter doctor    
+          name: Run the application tests
+          command: flutter test
 
-      # Add more steps for testing, building, or other tasks as needed
+      - run:
+          name: Build the Android version
+          command: flutter build apk 
 
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build
+      - store_artifacts:
+          path: build/app/outputs/apk/release/app-release.apk
