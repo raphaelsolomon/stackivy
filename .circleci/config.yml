@@ -10,7 +10,7 @@ jobs:
 
       - run:
           name: Flutter Pub Get
-          command: flutter pub get
+          command: flutter doctor
 
       # Add more steps for testing, building, or other tasks as needed
 
