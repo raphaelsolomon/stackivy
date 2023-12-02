@@ -20,6 +20,13 @@ jobs:
 
       - run:
           name: Flutter Pub Get
-          command: flutter pub get  
+          command: flutter pub get
+
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
       
 
