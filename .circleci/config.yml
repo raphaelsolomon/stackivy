@@ -1,25 +1,14 @@
 version: 2.1
-jobs:
-  build:
-    docker:
-      - image: cirrusci/flutter::v3.16.1
 
-    # branches:
-    #   only: main
+orbs:
+  flutter: circleci/flutter@2.0.2
 
-    steps:
-      - checkout
+workflows:
+  test:
+    jobs:
+      - flutter/lint:
+          version: 3.0.3
+          
+      - flutter/unit_test:
+          version: 3.0.3
 
-      - run:
-          name: Run Flutter doctor
-          command: flutter doctor
-
-      - run:
-          name: Install Flutter dependencies
-          command: flutter pub get
-
-      - run:
-          name: Run Flutter tests
-          command: flutter test
-
-      # # Add additional steps for building and deploying as needed
