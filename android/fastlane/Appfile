@@ -1,0 +1,2 @@
+json_key_file("C:\Users\phoen\Downloads\groovi-ee1a3-3a8f7a67dd3e.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.raphael.stackivy") # e.g. com.krausefx.app
