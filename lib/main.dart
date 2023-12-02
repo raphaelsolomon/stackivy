@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Stackivy',
+      title: 'Stackivys',
       defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
