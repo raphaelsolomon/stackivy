@@ -9,8 +9,12 @@ jobs:
       - checkout
 
       - run:
-          name: Flutter Pub Get
-          command: flutter doctor
+          name: Flutter upgrade
+          command: flutter upgrade
+
+      - run:
+          name: Flutter Doctor
+          command: flutter doctor    
 
       # Add more steps for testing, building, or other tasks as needed
 
