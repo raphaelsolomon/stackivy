@@ -24,6 +24,9 @@ jobs:
         with:
           flutter-version: '3.16.1'
           channel: 'stable'
+      
+      - name: Accept Android licenses
+        run: flutter doctor --android-licenses
 
       - name: Flutter Doctor
         run: flutter doctor    
