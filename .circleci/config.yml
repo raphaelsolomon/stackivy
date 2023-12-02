@@ -4,9 +4,6 @@ jobs:
     docker:
       - image: cirrusci/flutter:v3.16.0 
 
-    branches:
-      only: master
-
     steps:
       - checkout
 
