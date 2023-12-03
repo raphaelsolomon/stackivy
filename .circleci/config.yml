@@ -17,4 +17,9 @@ jobs:
 
       - run:
           command: flutter doctor
+
+workflows:
+  main:
+    jobs:
+    - build
   
