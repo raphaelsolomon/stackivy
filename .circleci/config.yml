@@ -6,7 +6,7 @@ orbs:
 jobs:
   build_ios:
     macos:
-      xcode: 15.0.1 
+      xcode: 15.0.0 
     
     steps:
       - flutter/install_sdk_and_pub:
