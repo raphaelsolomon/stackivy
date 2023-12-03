@@ -16,6 +16,10 @@ jobs:
       - flutter/install_ios_gem
 
       - run:
+          name: Install cocoapod
+          command: gem install cocoapods
+
+      - run:
           command: flutter doctor
 
 workflows:
