@@ -4,8 +4,11 @@ jobs:
   build:
     docker:
       - image: ghcr.io/cirruslabs/flutter:latest
+
     steps:
-      - checkout
+      - run: 
+          name: Pull source code from repository
+          command: checkout
 
       - run: 
           name: Get flutter doctor
@@ -32,7 +35,6 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
 workflows:
-  version: 2
   main:
     jobs:
     - build:
