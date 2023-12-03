@@ -2,9 +2,9 @@ version: 2.1
 
 jobs:
   build:
-    when:
-      and:
-        - equal: [ master, << pipeline.git.branch >> ]
+    filters:
+            branches:
+              only: develop
 
     docker:
       - image: ghcr.io/cirruslabs/flutter:latest
