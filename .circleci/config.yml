@@ -2,9 +2,6 @@ version: 2.1
 
 jobs:
   build:
-    branches:
-      only: develop
-
     docker:
       - image: ghcr.io/cirruslabs/flutter:latest
     steps:
