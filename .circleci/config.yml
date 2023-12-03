@@ -1,29 +1,55 @@
 version: 2.1
 
-orbs:
-  flutter: circleci/flutter@2.0.0
-
 jobs:
-  build_ios:
+  build:
     macos:
-      xcode: 15.0.0 
-    
+      xcode: "15.0.0"
+
     steps:
-      - run:
-          name: Install cocoapod
-          command: gem install cocoapods
-
-      - flutter/install_sdk_and_pub:
-          version: 3.16.1
-      
-      - flutter/install_ios_pod
-      - flutter/install_ios_gem
+      - checkout
 
       - run:
-          command: flutter doctor
+          name: Install Flutter
+          command: |
+            sudo gem install cocoapods
+            curl -sS https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_3.16.1-stable.zip -o flutter.zip
+            unzip flutter.zip
+            export PATH="$PATH:$PWD/flutter/bin"
+
+      - run:
+          name: Install dependencies
+          command: flutter pub get
+
+      - run:
+          name: Run tests
+          command: flutter test
+
+      - run:
+          name: Build iOS app
+          command: flutter build ios --release --no-codesign
+
+      - run:
+          name: Archive app
+          command: |
+            xcodebuild -archivePath "build/MyApp.xcarchive" \
+                       -workspace "ios/Runner.xcworkspace" \
+                       -scheme "Runner" \
+                       -configuration Release \
+                       -sdk iphoneos \
+                       -derivedDataPath "build" \
+                       -archivePath "build/MyApp.xcarchive" \
+                       archive
+
+      - run:
+          name: Export IPA
+          command: |
+            xcodebuild -exportArchive \
+                       -archivePath "build/MyApp.xcarchive" \
+                       -exportOptionsPlist "ExportOptions.plist" \
+                       -exportPath "build"
 
 workflows:
-  main:
+  version: 2
+  build:
     jobs:
-    - build_ios
-  
+      - build
