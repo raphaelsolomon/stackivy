@@ -12,8 +12,7 @@ jobs:
           name: Install Flutter
           command: |
             sudo gem install cocoapods
-            curl -sS https://storage.googleapis.com/flutter_infra/releases/stable/macos/flutter_macos_3.16.1-stable.zip -o flutter.zip
-            unzip flutter.zip
+            git clone -b stable https://github.com/flutter/flutter.git
             export PATH="$PATH:$PWD/flutter/bin"
 
       - run:
